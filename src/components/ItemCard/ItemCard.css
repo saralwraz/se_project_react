@@ -1,0 +1,9 @@
+.item__cards_list {
+  display: flex;
+}
+
+.item__card_name {
+  font-size: 16px;
+  align-items: center;
+  opacity: 0.6;
+}

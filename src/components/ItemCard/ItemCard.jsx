@@ -1,20 +1,11 @@
 import "./ItemCard.css";
 
-function ItemCard() {
+function ItemCard({ item }) {
   return (
-    <header className="ItemCard">
-      <img className="header__logo" src={logo} />
-      <p className="header__date_time">Date, Location</p>
-      <button className="header__add_clothes">+ Add Clothes</button>
-      <div className="header__user_info">
-        <p className="header__username">Terrence Tegegne</p>{" "}
-        <img
-          src={avatar}
-          alt="Terrence Tegegne"
-          className="header__user_avatar"
-        />
-      </div>
-    </header>
+    <div key={item._id} className="item__card">
+      <h2 className="item__card_name">{item.name}</h2>
+      <img className="item__card_image" src={item.link} alt={item.name} />
+    </div>
   );
 }
 
