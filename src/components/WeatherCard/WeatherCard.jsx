@@ -5,7 +5,7 @@ function WeatherCard() {
   return (
     <section className="weather__card">
       <p className="weather__temp">75 &deg;</p>
-      <image src={sunny} alt="sunny" className="weather__card_image" />
+      <img src={sunny} alt="sunny" className="weather__card_image" />
     </section>
   );
 }
