@@ -1,9 +1,37 @@
+.item__card {
+  width: 325px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 19px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 34px;
+}
+
 .item__cards_list {
   display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  gap: 21px;
 }
 
 .item__card_name {
   font-size: 16px;
-  align-items: center;
+  line-height: 20px;
+  margin-left: auto;
   opacity: 0.6;
+  position: absolute;
+  background-color: white;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 4px;
+}
+
+.item__card_image {
+  width: 100%;
+  border-radius: 19px;
 }

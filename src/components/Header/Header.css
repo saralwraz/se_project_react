@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   padding: 32px 0 28px;
+  font-size: 20px;
+  line-height: 24.8px;
 }
 
 .header__logo {
@@ -11,7 +13,6 @@
 }
 
 .header__date_time {
-  font-weight: 500;
   margin: 0;
 }
 
@@ -19,6 +20,8 @@
   margin-left: auto;
   border: none;
   padding-right: 20px;
+  background: none;
+  font-weight: 700;
 }
 
 .header__user_info {
