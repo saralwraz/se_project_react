@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import "./ModalWithForm.css";
 
-function ModalWithForm({ children, buttonText, Title }) {
+function ModalWithForm({
+  children,
+  buttonText,
+  title,
+  activeModal,
+  closeActiveModal,
+}) {
   return (
-    <div className="modal">
+    <div
+      className={`modal ${
+        activeModal === "add-garment" ? "modal__opened" : ""
+      }`}
+    >
       <form className="modal__form">
-        <button className="modal__close" type="button"></button>
-        <h2 className="modal__heading">{Title}</h2>
+        <button
+          onClick={closeActiveModal}
+          className="modal__close"
+          type="button"
+        ></button>
+        <h2 className="modal__heading">{title}</h2>
         {children}
         <button className="modal__submit" type="button">
           {buttonText}

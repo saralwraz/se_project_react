@@ -2,12 +2,18 @@ import "./Header.css";
 import logo from "../../assets/wtwr-logo.svg";
 import avatar from "../../assets/wtwr-avatar.svg";
 
-function Header() {
+function Header({ handleAddClick }) {
   return (
     <header className="header">
       <img className="header__logo" src={logo} />
       <p className="header__date_time">Date, Location</p>
-      <button className="header__add_clothes">+ Add Clothes</button>
+      <button
+        onClick={handleAddClick}
+        type="button"
+        className="header__add_clothes"
+      >
+        + Add Clothes
+      </button>
       <div className="header__user_info">
         <p className="header__username">Terrence Tegegne</p>{" "}
         <img
