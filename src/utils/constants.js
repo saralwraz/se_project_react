@@ -36,3 +36,80 @@ export const defaultClothingItems = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4",
   },
 ];
+
+export const weatherOptions = [
+  {
+    day: true,
+    condition: "clear",
+    url: new URL("../../assets/sunny.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "cloudy",
+    url: new URL("../../assets/cloudy.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "fog",
+    url: new URL("../../assets/foggy.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "rain",
+    url: new URL("../../assets/rain.png", import.meta.url).href,
+  },
+
+  {
+    day: true,
+    condition: "storm",
+    url: new URL("../../assets/storm.png", import.meta.url).href,
+  },
+
+  {
+    day: true,
+    condition: "snow",
+    url: new URL("../../assets/snow.png", import.meta.url).href,
+  },
+
+  {
+    day: false,
+    condition: "clear",
+    url: new URL("../../assets/clear-night.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "cloudy",
+    url: new URL("../../assets/cloudy-night.png", import.meta.url).href,
+  },
+
+  {
+    day: false,
+    condition: "rain",
+    url: new URL("../../assets/rainy-night.png", import.meta.url).href,
+  },
+
+  {
+    day: false,
+    condition: "storm",
+    url: new URL("../../assets/stormy-night.png", import.meta.url).href,
+  },
+
+  {
+    day: false,
+    condition: "snow",
+    url: new URL("../../assets/snow-night.png", import.meta.url).href,
+  },
+
+  {
+    day: false,
+    condition: "foggy",
+    url: new URL("../../assets/foggy-night.png", import.meta.url).href,
+  },
+];
+
+export const coordinates = {
+  latitude: 32.0684,
+  longitude: 34.8248,
+};
+
+export const APIKey = "1329ab0835801f96e440ec03d459b67c";
