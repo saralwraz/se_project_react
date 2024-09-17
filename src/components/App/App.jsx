@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
+import { APIKey, coordinates } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import ItemModal from "../ItemModal/ItemModal";
+import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 
 function App() {
-  const [weatherData, setWeatherData] = useState({ type: "hot" });
+  const [weatherData, setWeatherData] = useState({
+    type: "",
+    temp: { F: 999 },
+    city: "",
+  });
   const [activeModal, setActiveModal] = useState("");
+  const [selectedCard, setSelectedCard] = useState({});
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -17,22 +25,37 @@ function App() {
     setActiveModal("");
   };
 
+  const handleCardClick = (card) => {
+    setActiveModal("preview");
+    setSelectedCard(card);
+  };
+
+  useEffect(() => {
+    getWeather(APIKey, coordinates)
+      .then((data) => {
+        const filteredData = filterWeatherData(data);
+        setWeatherData(filteredData);
+      })
+      .catch((error) => {
+        console.error("Error fetching weather data:", error);
+      });
+  }, []);
+
   return (
     <div className="app">
       <div className="app__content">
         <Header handleAddClick={handleAddClick} />
-        <Main weatherData={weatherData} />
+        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
         <Footer />
 
         {activeModal === "add-garment" && (
           <ModalWithForm
             buttonText="Add Garment"
             title="New Garment"
-            activeModal={activeModal}
             closeActiveModal={closeActiveModal}
           >
             <label htmlFor="name" className="modal__label">
-              Name{" "}
+              Name
               <input
                 type="text"
                 id="name"
@@ -42,7 +65,7 @@ function App() {
             </label>
 
             <label htmlFor="imageLink" className="modal__label">
-              Image{" "}
+              Image
               <input
                 type="url"
                 id="imageLink"
@@ -63,6 +86,7 @@ function App() {
                   type="radio"
                   id="hot"
                   name="weatherType"
+                  value="hot"
                   className="modal__radio_input"
                 />{" "}
                 Hot
@@ -75,6 +99,7 @@ function App() {
                   type="radio"
                   id="warm"
                   name="weatherType"
+                  value="warm"
                   className="modal__radio_input"
                 />{" "}
                 Warm
@@ -87,12 +112,17 @@ function App() {
                   type="radio"
                   id="cold"
                   name="weatherType"
+                  value="cold"
                   className="modal__radio_input"
                 />{" "}
                 Cold
               </label>
             </fieldset>
           </ModalWithForm>
+        )}
+
+        {activeModal === "preview" && (
+          <ItemModal card={selectedCard} closeActiveModal={closeActiveModal} />
         )}
       </div>
     </div>

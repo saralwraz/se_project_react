@@ -39,10 +39,10 @@ export const defaultClothingItems = [
 
 export const defaultWeatherOptions = {
   day: {
-    url: new URL("../assets/day/default-day.png", import.meta.url).href,
+    url: new URL("../assets/default-day.png", import.meta.url).href,
   },
   night: {
-    url: new URL("../assets/night/default-night.png", import.meta.url).href,
+    url: new URL("../assets/default-night.png", import.meta.url).href,
   },
 };
 
