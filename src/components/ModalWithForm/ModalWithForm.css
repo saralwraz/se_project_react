@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  visiblity: hidden;
+  visibility: hidden;
 }
 
 .modal__opened {
@@ -17,6 +17,8 @@
 
 .modal__heading {
   margin: 0 0 24px;
+  font-size: 16px;
+  line-height: 20px;
 }
 
 .modal__form {
