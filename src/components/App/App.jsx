@@ -52,6 +52,7 @@ function App() {
           <ModalWithForm
             buttonText="Add Garment"
             title="New Garment"
+            activeModal={activeModal}
             closeActiveModal={closeActiveModal}
           >
             <label htmlFor="name" className="modal__label">
@@ -122,7 +123,11 @@ function App() {
         )}
 
         {activeModal === "preview" && (
-          <ItemModal card={selectedCard} closeActiveModal={closeActiveModal} />
+          <ItemModal
+            card={selectedCard}
+            activeModal={activeModal}
+            closeActiveModal={closeActiveModal}
+          />
         )}
       </div>
     </div>
