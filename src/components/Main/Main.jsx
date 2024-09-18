@@ -6,7 +6,7 @@ import ItemCard from "../ItemCard/ItemCard";
 function Main({ weatherData, handleCardClick }) {
   return (
     <main>
-      <WeatherCard />
+      <WeatherCard weatherData={weatherData} />
       <section className="main__cards">
         <p className="main__weather_text">
           Today is {weatherData.temp.F} / You may want to wear:
