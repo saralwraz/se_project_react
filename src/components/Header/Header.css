@@ -33,9 +33,3 @@
 .header__username {
   padding-right: 12px;
 }
-
-@media screen and (max-width: 620px) {
-  .footer {
-    margin-top: 83px;
-  }
-}
