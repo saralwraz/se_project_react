@@ -24,7 +24,6 @@ function Main({ weatherData, handleCardClick }) {
             ))}
         </ul>
       </section>
-      <Footer />
     </main>
   );
 }
