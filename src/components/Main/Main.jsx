@@ -2,7 +2,6 @@ import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
-import Footer from "../Footer/Footer";
 
 function Main({ weatherData, handleCardClick }) {
   return (
