@@ -16,8 +16,13 @@
   margin: 0;
 }
 
-.header__add_clothes {
+.header__right {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.header__add_clothes {
   border: none;
   padding-right: 20px;
   background: none;
@@ -26,7 +31,6 @@
 
 .header__user_info {
   display: flex;
-  align-items: center;
   margin: 0;
 }
 
