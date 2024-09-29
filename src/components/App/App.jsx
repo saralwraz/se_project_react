@@ -17,7 +17,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [currentTempUnit, setCurrentTempUnit] = useState("C");
+  const [currentTempUnit, setCurrentTempUnit] = useState("F");
 
   const handleAddClick = () => setActiveModal("add-garment");
   const closeActiveModal = () => setActiveModal("");
@@ -27,7 +27,7 @@ function App() {
   };
 
   const handleToggleSwitchChange = () => {
-    setCurrentTempUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
+    setCurrentTempUnit((prevUnit) => (prevUnit === "F" ? "C" : "F"));
   };
 
   useEffect(() => {
