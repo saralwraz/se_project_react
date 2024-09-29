@@ -9,9 +9,15 @@ function ModalWithForm({
   onSubmit,
   closeActiveModal,
 }) {
+  // Prevent page reload on form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit();
+  };
+
   return (
-    <div className={`modal ${isOpen && "modal_opened"}`}>
-      <form className="modal__form">
+    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
+      <form className="modal__form" onSubmit={handleSubmit}>
         <button
           onClick={closeActiveModal}
           className="modal__close"
@@ -19,7 +25,7 @@ function ModalWithForm({
         />
         <h2 className="modal__heading">{title}</h2>
         {children}
-        <button className="modal__submit" type="button" onClick={onSubmit}>
+        <button className="modal__submit" type="submit">
           {buttonText}
         </button>
       </form>
