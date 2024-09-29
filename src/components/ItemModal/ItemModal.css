@@ -23,3 +23,14 @@
   object-fit: cover;
   border-radius: 16px 16px 0 0;
 }
+
+.modal__delete {
+  font-size: 20px;
+  color: #ff4d00;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  right: 32px;
+  bottom: 68px;
+}
