@@ -100,71 +100,8 @@ function App() {
             title="New Garment"
             isOpen={activeModal === "add-garment"}
             closeActiveModal={closeActiveModal}
-            onSubmit={handleAddItem} // Pass your function here
-          >
-            <label htmlFor="name" className="modal__label">
-              Name
-              <input
-                type="text"
-                id="name"
-                className="modal__input"
-                placeholder="Name"
-                required
-              />
-            </label>
-            <label htmlFor="imageLink" className="modal__label">
-              Image
-              <input
-                type="url"
-                id="imageLink"
-                className="modal__input"
-                placeholder="Image URL"
-                required
-              />
-            </label>
-            <fieldset className="modal__radio_buttons">
-              <legend className="modal__legend">
-                Select the weather type:
-              </legend>
-              <label
-                htmlFor="hot"
-                className="modal__label modal__label_type_radio"
-              >
-                <input
-                  type="radio"
-                  id="hot"
-                  name="weatherType"
-                  className="modal__radio_input"
-                  required
-                />
-                Hot
-              </label>
-              <label
-                htmlFor="warm"
-                className="modal__label modal__label_type_radio"
-              >
-                <input
-                  type="radio"
-                  id="warm"
-                  name="weatherType"
-                  className="modal__radio_input"
-                />
-                Warm
-              </label>
-              <label
-                htmlFor="cold"
-                className="modal__label modal__label_type_radio"
-              >
-                <input
-                  type="radio"
-                  id="cold"
-                  name="weatherType"
-                  className="modal__radio_input"
-                />
-                Cold
-              </label>
-            </fieldset>
-          </ModalWithForm>
+            onSubmit={handleAddItem}
+          />
 
           <ItemModal
             card={selectedCard}
