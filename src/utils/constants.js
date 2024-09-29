@@ -1,4 +1,4 @@
-export const defaultClothingItems = [
+export const clothingItems = [
   {
     _id: 0,
     name: "Cap",
