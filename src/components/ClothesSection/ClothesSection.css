@@ -1,0 +1,12 @@
+.clothes__section_header {
+  display: flex;
+  font-size: 20px;
+  line-height: 24.8px;
+}
+
+.clothes__section_button {
+  color: rgba(0, 0, 0, 0, 0.6);
+  border: none;
+  margin-left: 20px;
+  cursor: pointer;
+}
