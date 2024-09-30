@@ -9,11 +9,12 @@ function ModalWithForm({
   onSubmit,
   closeActiveModal,
 }) {
-  // Prevent page reload on form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit();
   };
+
+  console.log(children);
 
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>

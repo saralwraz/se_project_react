@@ -19,6 +19,7 @@ const AddItemModal = ({ closeActiveModal, handleAddItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log({ name, imageUrl, weather });
     handleAddItem({ name, imageUrl, weather });
   };
 
@@ -26,7 +27,7 @@ const AddItemModal = ({ closeActiveModal, handleAddItem, isOpen }) => {
     <ModalWithForm
       buttonText="Add Garment"
       title="New Garment"
-      isOpen={activeModal === "add-garment"}
+      isOpen={isOpen}
       closeActiveModal={closeActiveModal}
       onSubmit={handleSubmit}
     >

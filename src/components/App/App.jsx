@@ -10,6 +10,7 @@ import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTempUnitContext } from "../Contexts/CurrentTempUnitContext";
+import AddItemModal from "../AddItemModal/AddItemModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -95,12 +96,10 @@ function App() {
             />
           </Routes>
           <Footer />
-          <ModalWithForm
-            buttonText="Add Garment"
-            title="New Garment"
-            isOpen={activeModal === "add-garment"}
+          <AddItemModal
             closeActiveModal={closeActiveModal}
-            onSubmit={handleAddItem}
+            isOpen={activeModal === "add-garment"}
+            handleAddItem={handleAddItem}
           />
 
           <ItemModal
