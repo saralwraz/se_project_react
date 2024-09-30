@@ -10,6 +10,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTempUnitContext } from "../Contexts/CurrentTempUnitContext";
+import DeleteConfirm from "../DeleteConfirm/DeleteConfirm";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -24,6 +25,7 @@ function App() {
 
   // Event handlers
   const handleAddClick = () => setActiveModal("add-garment");
+
   const closeActiveModal = () => {
     setActiveModal("");
     setSelectedCard({});
@@ -68,6 +70,7 @@ function App() {
           <Header
             handleAddClick={handleAddClick}
             weatherData={weatherData}
+            clothingItems={clothingItems}
             handleToggleSwitchChange={handleToggleSwitchChange}
           />
           <Routes>
@@ -77,6 +80,7 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
                 />
               }
             />
@@ -103,6 +107,12 @@ function App() {
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
             confirmDeleteModal={handleDeleteCardClick}
+          />
+          <DeleteConfirm
+            activeModal={activeModal}
+            closeActiveModal={closeActiveModal}
+            handleDeleteCard={handleDeleteCard}
+            selectedCard={selectedCard}
           />
         </div>
       </CurrentTempUnitContext.Provider>

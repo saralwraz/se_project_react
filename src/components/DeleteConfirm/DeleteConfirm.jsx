@@ -30,7 +30,7 @@ function DeleteConfirm({
           <button className="modal__confirm_delete" onClick={onCardDelete}>
             Yes, delete item
           </button>
-          <button className="modal__cancel" onClick={onClose}>
+          <button className="modal__cancel" onClick={closeActiveModal}>
             Cancel
           </button>
         </div>
