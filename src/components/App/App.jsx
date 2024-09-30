@@ -34,11 +34,8 @@ function App() {
     setSelectedCard(card);
   };
 
-  const handleAddItem = (item) => {
-    return handleAddItem(item).then((newItem) => {
-      setClothingItems([newItem, ...clothingItems]);
-      closeActiveModal();
-    });
+  const handleAddItemSubmit = (newItem) => {
+    setClothingItems([newItem, ...clothingItems]);
   };
 
   const handleDeleteCard = (card) => {
@@ -88,6 +85,7 @@ function App() {
               path="/profile"
               element={
                 <Profile
+                  weatherData={weatherData}
                   onCardClick={handleCardClick}
                   clothingItems={clothingItems}
                   handleAddClick={handleAddClick}
@@ -99,7 +97,7 @@ function App() {
           <AddItemModal
             closeActiveModal={closeActiveModal}
             isOpen={activeModal === "add-garment"}
-            handleAddItem={handleAddItem}
+            handleAddItemSubmit={handleAddItemSubmit}
           />
 
           <ItemModal
