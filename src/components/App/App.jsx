@@ -5,12 +5,11 @@ import { APIKey, coordinates } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import Profile from "../Profile/Profile";
+import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
+import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTempUnitContext } from "../Contexts/CurrentTempUnitContext";
-import AddItemModal from "../AddItemModal/AddItemModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -29,6 +28,7 @@ function App() {
     setActiveModal("");
     setSelectedCard({});
   };
+
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
@@ -36,6 +36,7 @@ function App() {
 
   const handleAddItemSubmit = (newItem) => {
     setClothingItems([newItem, ...clothingItems]);
+    closeActiveModal();
   };
 
   const handleDeleteCard = (card) => {
@@ -46,14 +47,12 @@ function App() {
     });
   };
 
-  const handleDeleteCardClick = () => {
-    setActiveModal("delete-confirmation");
-  };
+  const handleDeleteCardClick = () => setActiveModal("delete-confirmation");
 
   const handleToggleSwitchChange = () =>
     setCurrentTempUnit((prevUnit) => (prevUnit === "F" ? "C" : "F"));
 
-  // Weather data on mount
+  // Fetch weather data on mount
   useEffect(() => {
     getWeather(coordinates, APIKey)
       .then((data) => setWeatherData(filterWeatherData(data)))
@@ -99,7 +98,6 @@ function App() {
             isOpen={activeModal === "add-garment"}
             handleAddItemSubmit={handleAddItemSubmit}
           />
-
           <ItemModal
             card={selectedCard}
             activeModal={activeModal}

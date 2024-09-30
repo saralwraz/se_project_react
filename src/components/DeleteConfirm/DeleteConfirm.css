@@ -1,0 +1,21 @@
+.modal__content_delete {
+  justify-content: center;
+  align-items: center;
+  padding-top: 60px;
+  margin: 0 auto;
+  max-width: 670px;
+}
+
+.modal__delete_buttons {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.modal__confirm_delete {
+  color: #ff4d00;
+  padding-top: 40px;
+  padding-bottom: 24px;
+}
