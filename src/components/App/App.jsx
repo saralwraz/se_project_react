@@ -41,15 +41,24 @@ function App() {
     closeActiveModal();
   };
 
-  const handleDeleteCard = (card) => {
-    deleteItem(card._id).then(() => {
-      setClothingItems((cards) => cards.filter((c) => c._id !== card._id));
-      setSelectedCard({});
-      closeActiveModal();
-    });
+  // Open confirmation modal
+  const handleDeleteCardClick = (card) => {
+    setSelectedCard(card);
+    setActiveModal("delete-confirmation");
   };
 
-  const handleDeleteCardClick = () => setActiveModal("delete-confirmation");
+  // Handle card deletion
+  const handleDeleteCard = (card) => {
+    deleteItem(card._id)
+      .then(() => {
+        setClothingItems((cards) => cards.filter((c) => c._id !== card._id));
+        setSelectedCard({});
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Error deleting item:", error);
+      });
+  };
 
   const handleToggleSwitchChange = () =>
     setCurrentTempUnit((prevUnit) => (prevUnit === "F" ? "C" : "F"));
@@ -106,7 +115,7 @@ function App() {
             card={selectedCard}
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
-            confirmDeleteModal={handleDeleteCardClick}
+            handleDelete={() => handleDeleteCardClick(selectedCard)} // Open delete modal when delete is clicked
           />
           <DeleteConfirm
             activeModal={activeModal}

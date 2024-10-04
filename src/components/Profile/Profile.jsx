@@ -3,7 +3,7 @@ import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 
 function Profile({ onCardClick, handleAddClick, clothingItems }) {
-  console.log("clothingItems in Profile:", clothingItems); // New console log
+  console.log("clothingItems in Profile:", clothingItems);
 
   return (
     <div className="profile">
