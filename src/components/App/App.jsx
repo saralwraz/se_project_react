@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { APIKey, coordinates } from "../../utils/constants";
+import { getItems, postItems, deleteItem } from "../../utils/api";
+
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -37,8 +39,12 @@ function App() {
   };
 
   const handleAddItemSubmit = (newItem) => {
-    setClothingItems([newItem, ...clothingItems]);
-    closeActiveModal();
+    postItems(newItem)
+      .then((addedItem) => {
+        setClothingItems([addedItem, ...clothingItems]);
+        closeActiveModal();
+      })
+      .catch((error) => console.error("Error adding item:", error));
   };
 
   // Open confirmation modal
@@ -49,25 +55,27 @@ function App() {
 
   // Handle card deletion
   const handleDeleteCard = (card) => {
-    deleteItem(card._id)
+    deleteItem(card)
       .then(() => {
         setClothingItems((cards) => cards.filter((c) => c._id !== card._id));
         setSelectedCard({});
         closeActiveModal();
       })
-      .catch((error) => {
-        console.error("Error deleting item:", error);
-      });
+      .catch((error) => console.error("Error deleting item:", error));
   };
 
   const handleToggleSwitchChange = () =>
     setCurrentTempUnit((prevUnit) => (prevUnit === "F" ? "C" : "F"));
 
-  // Fetch weather data on mount
+  // Fetch weather data + items on mount
   useEffect(() => {
     getWeather(coordinates, APIKey)
       .then((data) => setWeatherData(filterWeatherData(data)))
       .catch((error) => console.error("Error fetching weather data:", error));
+
+    getItems()
+      .then((items) => setClothingItems(items))
+      .catch((error) => console.error("Error fetching items:", error));
   }, []);
 
   return (

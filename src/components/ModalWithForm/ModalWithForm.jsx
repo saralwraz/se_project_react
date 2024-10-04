@@ -14,8 +14,6 @@ function ModalWithForm({
     onSubmit();
   };
 
-  console.log(children);
-
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <form className="modal__form" onSubmit={handleSubmit}>
