@@ -4,7 +4,7 @@ function checkResponse(res) {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(`Error:${res.status}`);
+  return Promise.reject(`Error: ${res.status}`);
 }
 
 function request(url, options) {
@@ -12,22 +12,30 @@ function request(url, options) {
 }
 
 function getItems() {
-  return request(`${baseUrl}/items`);
+  return fetch(`${baseUrl}/items`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(checkResponse);
 }
 
-function postItems({ name, imageUrl, weather }) {
-  return request(`${baseUrl}/items`, {
+function addItem({ name, imageUrl, weather }) {
+  return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({ name, imageUrl, weather }),
-  });
+  }).then(checkResponse);
 }
 
 function deleteItem(item) {
-  return request(`${baseUrl}/items/${item._id}`, {
+  return fetch(`${baseUrl}/items/${item._id}`, {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
-  });
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(checkResponse);
 }
 
-export { getItems, postItems, deleteItem };
+export { getItems, addItem, deleteItem };

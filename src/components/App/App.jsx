@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { APIKey, coordinates } from "../../utils/constants";
-import { getItems, postItems, deleteItem } from "../../utils/api";
+import { getItems, addItem, deleteItem } from "../../utils/api";
 
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -39,7 +39,7 @@ function App() {
   };
 
   const handleAddItemSubmit = (newItem) => {
-    postItems(newItem)
+    addItem(newItem)
       .then((addedItem) => {
         setClothingItems([addedItem, ...clothingItems]);
         closeActiveModal();
