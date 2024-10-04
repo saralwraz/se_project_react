@@ -101,12 +101,6 @@
       "imageUrl": "https://timshop.timhortons.ca/cdn/shop/files/retro-logo-tshirt-back-1000px.png?v=1707853862&width=1000",
       "weather": "hot",
       "_id": 16
-    },
-    {
-      "name": "Snuggie",
-      "imageUrl": "https://cdn.asotvinc.com/pimg/3A952C98418741B9BD4C51027842FA79.jpg",
-      "weather": "cold",
-      "_id": 17
     }
   ]
 }
