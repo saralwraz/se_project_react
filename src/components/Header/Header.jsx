@@ -26,7 +26,7 @@ function Header({ handleAddClick, weatherData }) {
         >
           + Add Clothes
         </button>
-        <Link to="/profile">
+        <Link to="/profile" className="header__link">
           <div className="header__user_info">
             <p className="header__username">Terrence Tegegne</p>{" "}
             <img
