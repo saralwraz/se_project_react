@@ -5,7 +5,7 @@ import { clothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
 import { CurrentTempUnitContext } from "../Contexts/CurrentTempUnitContext";
 
-function Main({ weatherData, handleCardClick }) {
+function Main({ weatherData, handleCardClick, clothingItems }) {
   const { currentTempUnit } = useContext(CurrentTempUnitContext);
 
   const displayTemp =
