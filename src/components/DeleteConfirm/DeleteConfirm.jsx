@@ -16,7 +16,7 @@ function DeleteConfirm({
         activeModal === "delete-confirmation" && "modal_opened"
       }`}
     >
-      <div className="modal__content modal__content_delete">
+      <div className="modal__form modal__content modal__content_delete">
         <button
           className="modal__close"
           type="button"

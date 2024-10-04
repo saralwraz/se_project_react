@@ -6,11 +6,22 @@
   max-width: 670px;
 }
 
+.modal__delete_text {
+  margin-top: 0;
+  font-size: 20px;
+  max-width: 367px;
+  text-align: center;
+}
+
 .modal__delete_buttons {
+  font-size: 20px;
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  background-color: transparent;
+}
+
+.modal__cancel {
+  background-color: white;
   border: none;
 }
 
@@ -18,4 +29,6 @@
   color: #ff4d00;
   padding-top: 40px;
   padding-bottom: 24px;
+  background-color: white;
+  border: none;
 }
