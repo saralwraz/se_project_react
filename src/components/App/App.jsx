@@ -11,7 +11,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import CurrentTempUnitContext from "../../utils/CurrentTempUnitContext";
+import CurrentTempUnitContext from "../../contexts/CurrentTempUnitContext";
 import DeleteConfirm from "../DeleteConfirm/DeleteConfirm";
 
 function App() {
@@ -123,7 +123,7 @@ function App() {
             card={selectedCard}
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
-            handleDelete={() => handleDeleteCardClick(selectedCard)} // Open delete modal when delete is clicked
+            handleDelete={() => handleDeleteCardClick(selectedCard)}
           />
           <DeleteConfirm
             activeModal={activeModal}
