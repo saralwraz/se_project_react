@@ -3,7 +3,7 @@ import "./main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import { clothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
-import { CurrentTempUnitContext } from "../Contexts/CurrentTempUnitContext";
+import CurrentTempUnitContext from "../../utils/CurrentTempUnitContext";
 
 function Main({ weatherData, handleCardClick, clothingItems }) {
   const { currentTempUnit } = useContext(CurrentTempUnitContext);

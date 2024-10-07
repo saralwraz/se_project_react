@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CurrentTempUnitContext } from "../components/Contexts/CurrentTempUnitContext";
+import CurrentTempUnitContext from "../utils/CurrentTempUnitContext";
 
 export const getWeather = ({ latitude, longitude }, APIKey) => {
   return fetch(

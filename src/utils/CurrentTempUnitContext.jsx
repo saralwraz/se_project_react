@@ -5,4 +5,4 @@ const CurrentTempUnitContext = React.createContext({
   handleToggleSwitchChange: () => {},
 });
 
-export { CurrentTempUnitContext };
+export default CurrentTempUnitContext;

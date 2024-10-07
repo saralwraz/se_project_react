@@ -11,7 +11,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { CurrentTempUnitContext } from "../Contexts/CurrentTempUnitContext";
+import CurrentTempUnitContext from "../../utils/CurrentTempUnitContext";
 import DeleteConfirm from "../DeleteConfirm/DeleteConfirm";
 
 function App() {
