@@ -80,6 +80,14 @@
   border-radius: 4px;
 }
 
+.modal__submit:hover {
+  opacity: 0.6;
+}
+
+.modal__submit-invalid {
+  opacity: 0.3;
+}
+
 .modal__legend {
   margin-bottom: 12px;
 }

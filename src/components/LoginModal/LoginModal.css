@@ -1,0 +1,17 @@
+.modal__input_login {
+  margin-top: 15px;
+  width: 440px;
+}
+
+.modal__input-password {
+  margin-bottom: 0;
+}
+
+.modal__signup-button {
+  opacity: 0.5;
+}
+
+.modal__submit_complete {
+  background-color: black;
+  cursor: pointer;
+}

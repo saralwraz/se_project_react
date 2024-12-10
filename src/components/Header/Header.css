@@ -4,6 +4,7 @@
   padding: 32px 0 28px;
   font-size: 20px;
   line-height: 24.8px;
+  font-family: "CabinetGrotesk", Arial, sans-serif;
 }
 
 .header__logo {
@@ -42,4 +43,21 @@
 .header__username {
   padding-right: 12px;
   color: black;
+}
+
+.header__signup {
+  font-weight: 700;
+  margin-right: 20px;
+  border: none;
+  padding: 0;
+  background: none;
+}
+
+.header__login {
+  font-weight: 700;
+  line-height: 24px;
+  border: none;
+  margin-left: 0;
+  margin-right: 20px;
+  background: none;
 }

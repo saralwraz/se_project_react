@@ -1,61 +1,93 @@
 import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import LoginModal from "./LoginModal.css";
 
-const LoginModal = ({ closeActiveModal, isOpen }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const LoginModal = ({
+  closeActiveModal,
+  isOpen,
+  onLogIn,
+  openRegisterModal,
+  buttonClass = "modal__submit",
+}) => {
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [isButtonActive, setIsButtonActive] = useState(false);
+
+  useEffect(() => {
+    setIsButtonActive(data.email.trim() !== "" && data.password.trim() !== "");
+  }, [data.email, data.password]);
 
   useEffect(() => {
     if (isOpen) {
-      setEmail("");
-      setPassword("");
+      setData({ email: "", password: "" });
     }
   }, [isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Login submitted", { email, password });
+    onLogIn(data);
   };
-
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
 
   return (
     <ModalWithForm
-      buttonText="Login"
-      title="Login"
+      title="Log In"
+      buttonText="Log In"
       isOpen={isOpen}
-      closeActiveModal={closeActiveModal}
+      onClose={closeActiveModal}
       onSubmit={handleSubmit}
-      isDisabled={!(email && password)}
+      buttonClass={`modal__submit ${
+        isButtonActive ? "modal__submit_complete" : ""
+      }`}
     >
-      <div className="modal__field">
-        <label htmlFor="modal__email-input" className="modal__label">
-          Email
-        </label>
+      <label htmlFor="email" className="modal__label">
+        Email
         <input
-          required
-          id="modal__email-input"
-          className="modal__input"
           type="email"
-          placeholder="Email"
-          value={email}
-          onChange={handleEmailChange}
-        />
-      </div>
-      <div className="modal__field">
-        <label htmlFor="modal__password-input" className="modal__label">
-          Password
-        </label>
-        <input
-          required
-          id="modal__password-input"
           className="modal__input"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={handlePasswordChange}
+          id="login-email"
+          placeholder="Email"
+          name="email"
+          value={data.email}
+          onChange={(e) =>
+            setData((prevData) => ({ ...prevData, email: e.target.value }))
+          }
+          required
         />
+      </label>
+      <label htmlFor="password" className="modal__label">
+        Password
+        <input
+          type="password"
+          className="modal__input"
+          id="login-password"
+          placeholder="Password"
+          name="password"
+          value={data.password}
+          onChange={(e) =>
+            setData((prevData) => ({ ...prevData, password: e.target.value }))
+          }
+          required
+        />
+      </label>
+      <div className="modal__buttons-wrapper">
+        <button
+          type="submit"
+          className={`${buttonClass} ${
+            isButtonActive ? "modal__submit_complete" : ""
+          }`}
+        >
+          Log In
+        </button>
+        <button
+          type="button"
+          className="modal__signup-button"
+          onClick={openRegisterModal}
+        >
+          or Sign Up
+        </button>
       </div>
     </ModalWithForm>
   );

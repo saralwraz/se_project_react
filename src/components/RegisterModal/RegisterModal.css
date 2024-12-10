@@ -1,0 +1,8 @@
+.modal__login-button {
+  opacity: 0.5;
+}
+
+.modal__buttons-container {
+  gap: 2px;
+  opacity: 0px;
+}

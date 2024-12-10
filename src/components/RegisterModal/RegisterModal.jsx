@@ -1,94 +1,127 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useEffect, useState } from "react";
-import { register } from "../../utils/auth.js";
-const RegisterModal = ({ isOpen, closeActiveModal }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
+import React, { useState, useEffect } from "react";
+import RegisterModal from "./RegisterModal.css";
+
+const RegisterModal = ({
+  isOpen,
+  closeActiveModal,
+  openLoginModal,
+  onSignUp,
+  buttonClass = "modal__submit",
+}) => {
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+    name: "",
+    avatar: "",
+  });
+  const [isButtonActive, setIsButtonActive] = useState(false);
 
   useEffect(() => {
-    setEmail("");
-    setPassword("");
-    setName("");
-    setAvatar("");
+    setIsButtonActive(
+      data.email.trim() !== "" &&
+        data.password.trim() !== "" &&
+        data.name.trim() !== "" &&
+        data.avatar.trim() !== ""
+    );
+  }, [data]);
+
+  // Reset input fields when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setData({ email: "", password: "", name: "", avatar: "" });
+    }
   }, [isOpen]);
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    register(email, password, name, avatar);
-  }
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
+    onSignUp(data);
+  };
 
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
-  }
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
-
-  function handleAvatarChange(e) {
-    setAvatar(e.target.value);
-  }
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevData) => ({ ...prevData, [name]: value }));
+  };
 
   return (
     <ModalWithForm
       title="Sign Up"
       buttonText="Sign Up"
       isOpen={isOpen}
-      handleSubmit={handleSubmit}
       onClose={closeActiveModal}
-      isDisabled={!(name && avatar && email && password)}
+      onSubmit={handleSubmit}
+      buttonClass={`${buttonClass} ${
+        isButtonActive ? "modal__submit_complete" : ""
+      }`}
     >
-      <div className="modal__email">
-        <label htmlFor="modal__label">Email</label>
+      <label htmlFor="email" className="modal__label">
+        Email{" "}
         <input
-          required
-          id="modal__email-input"
+          type="email"
           className="modal__input"
-          type="text"
+          id="register-email"
+          name="email"
           placeholder="Email"
-          value={email}
-          onChange={handleEmailChange}
-        />
-      </div>
-      <div className="modal__password">
-        <label htmlFor="modal__label">Password</label>
-        <input
+          value={data.email}
+          onChange={handleInputChange}
           required
-          id="modal__password-input"
-          className="modal__input"
+        />
+      </label>
+      <label htmlFor="password" className="modal__label">
+        Password{" "}
+        <input
           type="password"
-          placeholder="Password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-      </div>
-      <div className="modal__name">
-        <label htmlFor="modal__label">Name</label>
-        <input
-          required
-          id="modal__name-input"
           className="modal__input"
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={handleNameChange}
-        />
-      </div>
-      <div className="modal__avatar">
-        <label htmlFor="modal__label">Avatar</label>
-        <input
+          id="register-password"
+          name="password"
+          placeholder="Password"
+          value={data.password}
+          onChange={handleInputChange}
           required
-          id="modal__avatar-input"
-          className="modal__avatar"
-          type="url"
-          placeholder="Avatar"
-          value={avatar}
-          onChange={handleAvatarChange}
         />
+      </label>
+      <label htmlFor="name" className="modal__label">
+        Name{" "}
+        <input
+          type="text"
+          className="modal__input"
+          id="register-name"
+          name="name"
+          placeholder="Name"
+          value={data.name}
+          onChange={handleInputChange}
+          required
+        />
+      </label>
+      <label htmlFor="avatar" className="modal__label">
+        Avatar URL{" "}
+        <input
+          type="url"
+          className="modal__input"
+          id="register-avatar"
+          name="avatar"
+          placeholder="Avatar URL"
+          value={data.avatar}
+          onChange={handleInputChange}
+          required
+        />
+      </label>
+      <div className="modal__buttons-container">
+        <button
+          type="submit"
+          className={`${buttonClass} ${
+            isButtonActive ? "modal__submit_complete" : ""
+          }`}
+        >
+          Sign Up
+        </button>
+        <button
+          type="button"
+          className="modal__login-button"
+          onClick={openLoginModal}
+        >
+          or Log In
+        </button>
       </div>
     </ModalWithForm>
   );
