@@ -24,9 +24,6 @@ function ModalWithForm({
         />
         <h2 className="modal__heading">{title}</h2>
         {children}
-        <button className="modal__submit" type="submit">
-          {buttonText}
-        </button>
       </form>
     </div>
   );

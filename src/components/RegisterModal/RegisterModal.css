@@ -3,8 +3,6 @@
 }
 
 .modal__buttons-container {
-  display: flex;
-  flex-direction: row;
   gap: 2px;
   opacity: 0px;
 }

@@ -80,6 +80,14 @@ const LoginModal = ({
       </label>
       <div className="modal__buttons-wrapper">
         <button
+          type="submit"
+          className={`${buttonClass} ${
+            isButtonActive ? "modal__submit_complete" : ""
+          }`}
+        >
+          Log In
+        </button>
+        <button
           type="button"
           className="modal__signup-button"
           onClick={openRegisterModal}
