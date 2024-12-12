@@ -16,6 +16,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTempUnitContext from "../../contexts/CurrentTempUnitContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import DeleteConfirm from "../DeleteConfirm/DeleteConfirm";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -59,6 +60,10 @@ function App() {
 
   const handleLoginModal = () => {
     setActiveModal("login");
+  };
+
+  const handleRegisterModal = () => {
+    setActiveModal("signup");
   };
 
   // Open confirmation modal
@@ -170,6 +175,7 @@ function App() {
               weatherData={weatherData}
               clothingItems={clothingItems}
               handleToggleSwitchChange={handleToggleSwitchChange}
+              openRegisterModal={handleRegisterModal}
             />
             <Routes>
               <Route
@@ -197,6 +203,7 @@ function App() {
                     isLiked={isLiked}
                     isLoggedIn={isLoggedIn}
                     onCardLike={handleCardLike}
+                    handleSignout={handleSignout}
                   />
                 }
               />
@@ -231,7 +238,14 @@ function App() {
             <LoginModal
               isOpen={activeModal === "login"}
               closeActiveModal={closeActiveModal}
+              openRegisterModal={handleRegisterModal}
               onLogIn={onLogIn}
+            />
+
+            <EditProfileModal
+              isOpen={activeModal === "edit"}
+              onClose={closeActiveModal}
+              onEditProfileSubmit={onEditProfileSubmit}
             />
           </div>
         </CurrentTempUnitContext.Provider>

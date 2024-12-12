@@ -26,7 +26,6 @@ const RegisterModal = ({
     );
   }, [data]);
 
-  // Reset input fields when modal opens
   useEffect(() => {
     if (isOpen) {
       setData({ email: "", password: "", name: "", avatar: "" });
@@ -54,6 +53,13 @@ const RegisterModal = ({
         isButtonActive ? "modal__submit_complete" : ""
       }`}
     >
+      {/* Close Button */}
+      <button
+        className="modal__close"
+        type="button"
+        onClick={closeActiveModal}
+      />
+
       <label htmlFor="email" className="modal__label">
         Email{" "}
         <input
@@ -120,7 +126,7 @@ const RegisterModal = ({
           className="modal__login-button"
           onClick={openLoginModal}
         >
-          or Log In
+          Or Log In
         </button>
       </div>
     </ModalWithForm>

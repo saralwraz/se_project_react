@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import React, { useState, useEffect } from "react";
 import "./LoginModal.css";
 
 const LoginModal = ({
@@ -42,6 +42,12 @@ const LoginModal = ({
         isButtonActive ? "modal__submit_complete" : ""
       }`}
     >
+      <button
+        className="modal__close"
+        type="button"
+        onClick={closeActiveModal}
+      />
+
       <label htmlFor="email" className="modal__label">
         Email
         <input
@@ -73,14 +79,6 @@ const LoginModal = ({
         />
       </label>
       <div className="modal__buttons-wrapper">
-        <button
-          type="submit"
-          className={`${buttonClass} ${
-            isButtonActive ? "modal__submit_complete" : ""
-          }`}
-        >
-          Log In
-        </button>
         <button
           type="button"
           className="modal__signup-button"
