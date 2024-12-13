@@ -17,6 +17,7 @@ import CurrentTempUnitContext from "../../contexts/CurrentTempUnitContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import DeleteConfirm from "../DeleteConfirm/DeleteConfirm";
 import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -195,16 +196,18 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <Profile
-                    weatherData={weatherData}
-                    onCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                    handleAddClick={handleAddClick}
-                    isLiked={isLiked}
-                    isLoggedIn={isLoggedIn}
-                    onCardLike={handleCardLike}
-                    handleSignout={handleSignout}
-                  />
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <Profile
+                      weatherData={weatherData}
+                      onCardClick={handleCardClick}
+                      clothingItems={clothingItems}
+                      handleAddClick={handleAddClick}
+                      isLiked={isLiked}
+                      isLoggedIn={isLoggedIn}
+                      onCardLike={handleCardLike}
+                      handleSignout={handleSignout}
+                    />
+                  </ProtectedRoute>
                 }
               />
             </Routes>
