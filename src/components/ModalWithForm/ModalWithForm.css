@@ -91,3 +91,7 @@
 .modal__legend {
   margin-bottom: 12px;
 }
+
+.modal__error {
+  color: #ff4d00;
+}

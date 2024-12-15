@@ -1,5 +1,10 @@
-export const baseUrl = "http://localhost:3000";
+const baseUrl = "http://localhost:3000";
 
+// Helper function to handle fetch responses
+const handleResponse = (res) =>
+  res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+
+// Register a new user
 export const register = (email, password, name, avatarURL) => {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
@@ -8,11 +13,10 @@ export const register = (email, password, name, avatarURL) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password, name, avatarURL }),
-  }).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  );
+  }).then(handleResponse);
 };
 
+// Log in an existing user
 export const logIn = (email, password) => {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
@@ -21,7 +25,49 @@ export const logIn = (email, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  );
+  }).then(handleResponse);
+};
+
+// Get the user's profile (JWT)
+export const getUserProfile = (token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(handleResponse);
+};
+
+//Edit Profile
+export const handleEditProfile = ({ name, avatar }, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(handleResponse);
+};
+
+// Add card like
+export const addCardLike = (id, token) => {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(handleResponse);
+};
+
+// Remove card like
+export const removeCardLike = (id, token) => {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(handleResponse);
 };

@@ -8,12 +8,9 @@ const LoginModal = ({
   onLogIn,
   openRegisterModal,
   buttonClass = "modal__submit",
+  error = null,
 }) => {
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
-
+  const [data, setData] = useState({ email: "", password: "" });
   const [isButtonActive, setIsButtonActive] = useState(false);
 
   useEffect(() => {
@@ -41,13 +38,13 @@ const LoginModal = ({
       buttonClass={`modal__submit ${
         isButtonActive ? "modal__submit_complete" : ""
       }`}
+      error={error}
     >
       <button
         className="modal__close"
         type="button"
         onClick={closeActiveModal}
       />
-
       <label htmlFor="email" className="modal__label">
         Email
         <input
@@ -78,6 +75,7 @@ const LoginModal = ({
           required
         />
       </label>
+      {error && <div className="modal__error">{error}</div>}
       <div className="modal__buttons-wrapper">
         <button
           type="submit"
