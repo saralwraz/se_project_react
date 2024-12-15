@@ -3,20 +3,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import { APIKey, coordinates } from "../../utils/constants";
 import { getItems, addItem, deleteItem } from "../../utils/api";
-import Header from "../Header/Header";
-import Main from "../Main/Main";
-import Footer from "../Footer/Footer";
-import AddItemModal from "../AddItemModal/AddItemModal";
-import ItemModal from "../ItemModal/ItemModal";
-import RegisterModal from "../RegisterModal/RegisterModal";
-import LoginModal from "../LoginModal/LoginModal";
-import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import CurrentTempUnitContext from "../../contexts/CurrentTempUnitContext";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
-import DeleteConfirm from "../DeleteConfirm/DeleteConfirm";
-import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import {
   register,
   logIn,
@@ -25,6 +12,20 @@ import {
   addCardLike,
   removeCardLike,
 } from "../../utils/auth";
+
+import Header from "../Header/Header";
+import Main from "../Main/Main";
+import Footer from "../Footer/Footer";
+import AddItemModal from "../AddItemModal/AddItemModal";
+import ItemModal from "../ItemModal/ItemModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
+import Profile from "../Profile/Profile";
+import DeleteConfirm from "../DeleteConfirm/DeleteConfirm";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
+import CurrentTempUnitContext from "../../contexts/CurrentTempUnitContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -37,10 +38,10 @@ function App() {
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
 
+  // Fetch user profile and authentication status on load
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
@@ -53,18 +54,26 @@ function App() {
           setIsLoggedIn(false);
         });
     }
+  }, []);
 
+  // Fetch weather data on load
+  useEffect(() => {
     getWeather(coordinates, APIKey)
-      .then((data) => setWeatherData(filterWeatherData(data)))
-      .catch((error) => console.error("Error fetching weather data:", error));
+      .then((data) => {
+        const filteredData = filterWeatherData(data);
+        setWeatherData(filteredData);
+      })
+      .catch(console.error);
+  }, []);
 
+  // Fetch clothing items on load
+  useEffect(() => {
     getItems()
-      .then((items) => setClothingItems(items))
-      .catch((error) => console.error("Error fetching items:", error));
+      .then((data) => setClothingItems(data))
+      .catch((error) => console.log(error));
   }, []);
 
   const handleAddClick = () => setActiveModal("add-garment");
-
   const closeActiveModal = () => {
     setActiveModal("");
     setSelectedCard({});
@@ -86,7 +95,6 @@ function App() {
   };
 
   const handleLoginModal = () => setActiveModal("login");
-
   const handleRegisterModal = () => setActiveModal("signup");
 
   const handleDeleteCardClick = (card) => {
@@ -236,14 +244,12 @@ function App() {
               onRegister={onRegister}
               openLoginModal={handleLoginModal}
             />
-
             <LoginModal
               isOpen={activeModal === "login"}
               closeActiveModal={closeActiveModal}
               openRegisterModal={handleRegisterModal}
               onLogIn={onLogIn}
             />
-
             <EditProfileModal
               isOpen={activeModal === "edit"}
               onClose={closeActiveModal}

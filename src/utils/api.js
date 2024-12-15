@@ -44,7 +44,7 @@ export const checkTokenValidity = (token) => {
   }).then(checkResponse);
 };
 
-// Get all items (public access)
+// Get all items
 export const getItems = () => {
   return fetch(`${baseUrl}/items`, {
     headers: {
