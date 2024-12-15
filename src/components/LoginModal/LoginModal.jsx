@@ -6,7 +6,7 @@ const LoginModal = ({
   closeActiveModal,
   isOpen,
   onLogIn,
-  openRegisterModal,
+  handleRegisterModal,
   buttonClass = "modal__submit",
   error = null,
 }) => {
@@ -88,7 +88,7 @@ const LoginModal = ({
         <button
           type="button"
           className="modal__signup-button"
-          onClick={openRegisterModal}
+          onClick={handleRegisterModal}
         >
           or Sign Up
         </button>

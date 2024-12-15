@@ -186,7 +186,7 @@ function App() {
               weatherData={weatherData}
               clothingItems={clothingItems}
               handleToggleSwitchChange={handleToggleSwitchChange}
-              openRegisterModal={handleRegisterModal}
+              handleRegisterModal={handleRegisterModal}
             />
             <Routes>
               <Route
@@ -247,7 +247,7 @@ function App() {
             <LoginModal
               isOpen={activeModal === "login"}
               closeActiveModal={closeActiveModal}
-              openRegisterModal={handleRegisterModal}
+              handleRegisterModal={handleRegisterModal}
               onLogIn={onLogIn}
             />
             <EditProfileModal
