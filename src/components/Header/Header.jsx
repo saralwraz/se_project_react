@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Header.css";
 import logo from "../../assets/wtwr-logo.svg";
-import avatar from "../../assets/wtwr-avatar.svg";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { useContext } from "react";
@@ -13,54 +12,50 @@ function Header({
   handleLoginModal,
   isLoggedIn,
 }) {
-  const currentUser = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
-  if (isLoggedIn) {
-    return (
-      <header className="header">
-        <Link to="/">
-          <img className="header__logo" src={logo} alt="header logo" />
-        </Link>
-        <p className="header__date_time">
-          {currentDate}, {weatherData.city}
-        </p>
-        <div className="header__right">
-          <ToggleSwitch />
-          <button
-            onClick={handleAddClick}
-            type="button"
-            className="header__add_clothes"
-          >
-            + Add Clothes
-          </button>
-          <Link to="/profile" className="header__link">
+  const currentUser = useContext(CurrentUserContext);
+
+  return (
+    <header className="header">
+      <Link to="/">
+        <img className="header__logo" src={logo} alt="header logo" />
+      </Link>
+      <p className="header__date_time">
+        {currentDate}, {weatherData.city}
+      </p>
+      <div className="header__right">
+        <ToggleSwitch />
+        {isLoggedIn ? (
+          <>
+            <button
+              onClick={handleAddClick}
+              type="button"
+              className="header__add_clothes"
+            >
+              + Add Clothes
+            </button>
             <div className="header__user_info">
-              <p className="header__username">{currentUser.name}</p>
-              <img
-                src={currentUser.avatar || avatar}
-                alt={currentUser.name || "User Avatar"}
-                className="header__user_avatar"
-              />
+              <Link to="/profile" className="header__link">
+                <p className="header__username">{currentUser.name}</p>
+              </Link>
+              {currentUser.avatar ? (
+                <img
+                  src={currentUser.avatar}
+                  alt={currentUser.name || "User Avatar"}
+                  className="header__avatar"
+                />
+              ) : (
+                <div className="header__avatar-placeholder">
+                  {currentUser.name.charAt(0).toUpperCase()}
+                </div>
+              )}
             </div>
-          </Link>
-        </div>
-      </header>
-    );
-  } else {
-    return (
-      <header className="header">
-        <Link to="/">
-          <img className="header__logo" src={logo} alt="header logo" />
-        </Link>
-        <p className="header__date_time">
-          {currentDate}, {weatherData.city}
-        </p>
-        <div className="header__right">
-          <ToggleSwitch />
+          </>
+        ) : (
           <div className="header__auth-buttons">
             <button
               onClick={handleRegisterModal}
@@ -77,10 +72,10 @@ function Header({
               Log In
             </button>
           </div>
-        </div>
-      </header>
-    );
-  }
+        )}
+      </div>
+    </header>
+  );
 }
 
 export default Header;
