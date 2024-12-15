@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import CurrentTempUnitContext from "../contexts/CurrentTempUnitContext";
-
 export const getWeather = ({ latitude, longitude }, APIKey) => {
   return fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIKey}

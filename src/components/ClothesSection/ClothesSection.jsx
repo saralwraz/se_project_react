@@ -1,7 +1,6 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 import { useContext } from "react";
-import { Cursor } from "mongoose";
 
 function ClothesSection({
   onCardClick,

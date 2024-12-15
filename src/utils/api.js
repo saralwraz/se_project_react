@@ -13,15 +13,14 @@ function request(url, options) {
 
 // Register a new user
 export const register = (email, password, name, avatar) => {
-  return fetch(`${baseUrl}/signup`, {
+  return request(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password, name, avatar }),
-  }).then(checkResponse);
+  });
 };
-
 // Log in an existing user
 export const logIn = (email, password) => {
   return fetch(`${baseUrl}/signin`, {
