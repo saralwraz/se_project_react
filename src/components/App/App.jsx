@@ -132,8 +132,13 @@ function App() {
   const onRegister = ({ email, password, name, avatarURL }) => {
     const userProfile = { email, password, name, avatarURL };
     register(userProfile)
-      .then(() => onLogIn({ email, password }))
-      .catch((error) => console.error("Error at sign up:", error));
+      .then((res) => {
+        onLogin({ email, password });
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Registration failed:", error);
+      });
   };
 
   const onEditProfileSubmit = ({ name, avatarURL }) => {
