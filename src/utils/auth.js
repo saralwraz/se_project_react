@@ -6,6 +6,11 @@ const handleResponse = (res) =>
 
 // Register a new user
 export const register = (email, password, name, avatarURL) => {
+  // Validation
+  if (!email || !password || !name || !avatarURL) {
+    return Promise.reject("Missing required fields");
+  }
+
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {

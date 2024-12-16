@@ -6,7 +6,7 @@ const RegisterModal = ({
   closeActiveModal,
   openLoginModal,
   isOpen,
-  onSignUp,
+  onRegister,
   buttonClass = "modal__submit",
 }) => {
   const [name, setName] = useState("");
@@ -35,7 +35,7 @@ const RegisterModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSignUp({ email, password, name, avatar });
+    onRegister({ email, password, name, avatar });
   };
 
   return (

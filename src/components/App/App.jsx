@@ -129,16 +129,16 @@ function App() {
       .catch(console.error);
   };
 
-  const onRegister = ({ email, password, name, avatar }) => {
-    const userProfile = { email, password, name, avatar };
+  const onRegister = ({ email, password, name, avatarURL }) => {
+    const userProfile = { email, password, name, avatarURL };
     register(userProfile)
       .then(() => onLogIn({ email, password }))
       .catch((error) => console.error("Error at sign up:", error));
   };
 
-  const onEditProfileSubmit = ({ name, avatar }) => {
+  const onEditProfileSubmit = ({ name, avatarURL }) => {
     const token = localStorage.getItem("jwt");
-    handleEditProfile({ name, avatar }, token)
+    handleEditProfile({ name, avatarURL }, token)
       .then((res) => {
         setCurrentUser({ ...currentUser, ...res });
         closeActiveModal();
