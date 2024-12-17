@@ -5,7 +5,7 @@ const handleResponse = (res) =>
   res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 
 // Register a new user
-export const register = (email, password, name, avatar) => {
+export const register = ({ email, password, name, avatar }) => {
   if (!email || !password || !name || !avatar) {
     return Promise.reject("Missing required fields");
   }
@@ -21,7 +21,7 @@ export const register = (email, password, name, avatar) => {
 };
 
 // Log in an existing user
-export const logIn = (email, password) => {
+export const logIn = ({ email, password }) => {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
