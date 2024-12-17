@@ -45,14 +45,14 @@ export const getUserProfile = (token) => {
 
 //Edit Profile
 // Edit Profile
-export const handleEditProfile = ({ name, avatarURL }, token) => {
+export const handleEditProfile = ({ name, avatar }, token) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ name, avatarURL }),
+    body: JSON.stringify({ name, avatar }),
   }).then(handleResponse);
 };
 

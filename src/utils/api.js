@@ -7,9 +7,16 @@ function checkResponse(res) {
   return Promise.reject(`Error: ${res.status}`);
 }
 
-function request(url, options) {
-  return fetch(url, options).then(checkResponse);
-}
+// Register a new user
+export const registerUser = (email, password, name, avatar) => {
+  return request(`${baseUrl}/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password, name, avatar }),
+  });
+};
 
 // Log in an existing user
 export const logIn = (email, password) => {
