@@ -129,8 +129,8 @@ function App() {
       .catch(console.error);
   };
 
-  const onRegister = ({ email, password, name, avatarURL }) => {
-    const userProfile = { email, password, name, avatarURL };
+  const onRegister = ({ email, password, name, avatar }) => {
+    const userProfile = { email, password, name, avatar };
     register(userProfile)
       .then((res) => {
         onLogin({ email, password });
