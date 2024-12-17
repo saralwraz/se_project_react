@@ -74,7 +74,7 @@ function App() {
   };
 
   // Toggle Temperature Unit
-  const toggleTempUnit = () =>
+  const handleToggleSwitchChange = () =>
     setCurrentTempUnit((prev) => (prev === "F" ? "C" : "F"));
 
   // Handle Actions
@@ -153,7 +153,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <CurrentTempUnitContext.Provider
-        value={{ currentTempUnit, toggleTempUnit }}
+        value={{ currentTempUnit, handleToggleSwitchChange }}
       >
         <div className="app">
           <Header
