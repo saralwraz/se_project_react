@@ -141,9 +141,9 @@ function App() {
       });
   };
 
-  const onEditProfileSubmit = ({ name, avatarURL }) => {
+  const onEditProfileSubmit = ({ name, avatar }) => {
     const token = localStorage.getItem("jwt");
-    handleEditProfile({ name, avatarURL }, token)
+    handleEditProfile({ name, avatar }, token)
       .then((res) => {
         setCurrentUser({ ...currentUser, ...res });
         closeActiveModal();

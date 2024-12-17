@@ -5,9 +5,8 @@ const handleResponse = (res) =>
   res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 
 // Register a new user
-export const register = (email, password, name, avatarURL) => {
-  // Validation
-  if (!email || !password || !name || !avatarURL) {
+export const register = (email, password, name, avatar) => {
+  if (!email || !password || !name || !avatar) {
     return Promise.reject("Missing required fields");
   }
 
@@ -17,7 +16,7 @@ export const register = (email, password, name, avatarURL) => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password, name, avatarURL }),
+    body: JSON.stringify({ email, password, name, avatar }),
   }).then(handleResponse);
 };
 
