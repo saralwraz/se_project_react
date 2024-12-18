@@ -71,7 +71,7 @@ const EditProfileModal = ({
         isButtonActive ? "modal__submit_active" : ""
       }`}
       isOpen={isOpen}
-      onClose={closeActiveModal}
+      closeActiveModal={closeActiveModal}
       onSubmit={handleSubmit}
       name={"editprofile"}
     >

@@ -25,7 +25,6 @@ export const logIn = ({ email, password }) => {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
-      Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
@@ -44,8 +43,7 @@ export const getUserProfile = (token) => {
 };
 
 //Edit Profile
-// Edit Profile
-export const handleEditProfile = ({ name, avatar }, token) => {
+export const editUserProfile = ({ name, avatar }, token) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {

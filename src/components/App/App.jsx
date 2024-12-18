@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
+
+// API and Utilities
 import { APIKey, coordinates } from "../../utils/constants";
 import { getItems, addItem, deleteItem } from "../../utils/api";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
@@ -8,26 +10,32 @@ import {
   register,
   logIn,
   getUserProfile,
-  handleEditProfile as editProfileAPI,
+  editUserProfile,
   addCardLike,
   removeCardLike,
 } from "../../utils/auth";
 
+// Contexts
+import CurrentTempUnitContext from "../../contexts/CurrentTempUnitContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
+// Components
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
+import Profile from "../Profile/Profile";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+
+// Modals
 import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
-import Profile from "../Profile/Profile";
 import DeleteConfirm from "../DeleteConfirm/DeleteConfirm";
-import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
-import CurrentTempUnitContext from "../../contexts/CurrentTempUnitContext";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 function App() {
+  // State Management
   const [weatherData, setWeatherData] = useState({
     type: "",
     temp: { F: 999, C: 999 },
@@ -41,7 +49,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ name: "", avatar: "" });
   const navigate = useNavigate();
 
-  // Fetch user profile and authentication status on load
+  // Initial Data Loading
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
@@ -54,14 +62,12 @@ function App() {
     }
   }, []);
 
-  // Fetch weather data on load
   useEffect(() => {
     getWeather(coordinates, APIKey)
       .then((data) => setWeatherData(filterWeatherData(data)))
       .catch(console.error);
   }, []);
 
-  // Fetch clothing items on load
   useEffect(() => {
     getItems().then(setClothingItems).catch(console.error);
   }, []);
@@ -73,13 +79,14 @@ function App() {
     setSelectedCard({});
   };
 
-  // Toggle Temperature Unit
+  // Temperature Unit Handler
   const handleToggleSwitchChange = () =>
     setCurrentTempUnit((prev) => (prev === "F" ? "C" : "F"));
 
-  // Handle Actions
+  // Item Handlers
   const handleAddItemSubmit = (newItem) => {
-    addItem(newItem, localStorage.getItem("jwt"))
+    const token = localStorage.getItem("jwt");
+    addItem(newItem, token)
       .then((addedItem) => {
         setClothingItems([addedItem, ...clothingItems]);
         closeModal();
@@ -88,7 +95,8 @@ function App() {
   };
 
   const handleDeleteCard = () => {
-    deleteItem(selectedCard)
+    const token = localStorage.getItem("jwt");
+    deleteItem(selectedCard, token)
       .then(() => {
         setClothingItems((cards) =>
           cards.filter((card) => card._id !== selectedCard._id)
@@ -111,9 +119,11 @@ function App() {
       .catch(console.error);
   };
 
+  // Authentication Handlers
   const handleLogin = ({ email, password }) => {
-    logIn({ email, password })
+    logIn(email, password)
       .then((data) => {
+        if (!data.token) throw new Error("Token not received");
         localStorage.setItem("jwt", data.token);
         return getUserProfile(data.token);
       })
@@ -123,7 +133,7 @@ function App() {
         navigate("/profile");
         closeModal();
       })
-      .catch(console.error);
+      .catch((err) => console.error("Login error:", err));
   };
 
   const handleRegister = (userData) => {
@@ -136,12 +146,12 @@ function App() {
 
   const handleEditProfile = (profileData) => {
     const token = localStorage.getItem("jwt");
-    editProfileAPI(profileData, token)
+    editUserProfile(profileData, token)
       .then((updatedUser) => {
-        setCurrentUser((prev) => ({ ...prev, ...updatedUser }));
+        setCurrentUser(updatedUser);
         closeModal();
       })
-      .catch(console.error);
+      .catch((err) => console.error("Edit profile error:", err));
   };
 
   const handleSignout = () => {
@@ -163,6 +173,7 @@ function App() {
             handleRegisterModal={() => openModal("signup")}
             weatherData={weatherData}
           />
+
           <Routes>
             <Route
               path="/"
@@ -193,12 +204,16 @@ function App() {
                     handleAddClick={() => openModal("add-garment")}
                     onCardLike={handleCardLike}
                     handleSignout={handleSignout}
+                    openModal={openModal}
                   />
                 </ProtectedRoute>
               }
             />
           </Routes>
+
           <Footer />
+
+          {/* Modals */}
           <AddItemModal
             isOpen={activeModal === "add-garment"}
             closeActiveModal={closeModal}
@@ -229,7 +244,7 @@ function App() {
           />
           <EditProfileModal
             isOpen={activeModal === "edit"}
-            onClose={closeModal}
+            closeActiveModal={closeModal}
             onEditProfileSubmit={handleEditProfile}
           />
         </div>

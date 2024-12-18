@@ -19,14 +19,19 @@ export const registerUser = (email, password, name, avatar) => {
 };
 
 // Log in an existing user
-export const logIn = (email, password) => {
+export const logIn = ({ email, password }) => {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then(checkResponse);
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return res.json().then((err) => Promise.reject(err));
+  });
 };
 
 // Check the token validity
@@ -58,6 +63,21 @@ export const addItem = (newItem, token) => {
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(newItem),
+  }).then(checkResponse);
+};
+
+//Edit Profile Data
+export const updateProfile = (profileData, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name: profileData.name,
+      avatar: profileData.avatar,
+    }),
   }).then(checkResponse);
 };
 

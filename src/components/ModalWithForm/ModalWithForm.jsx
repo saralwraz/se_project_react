@@ -8,14 +8,23 @@ function ModalWithForm({
   onSubmit,
   closeActiveModal,
 }) {
+  const handleModalClick = (e) => {
+    if (e.target === e.currentTarget) {
+      closeActiveModal();
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(e);
   };
 
   return (
-    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
-      <form className="modal__form" onSubmit={handleSubmit}>
+    <div
+      className={`modal ${isOpen ? "modal_opened" : ""}`}
+      onClick={handleModalClick}
+    >
+      <form className="modal__form" onSubmit={handleSubmit} noValidate>
         <button
           onClick={closeActiveModal}
           className="modal__close"

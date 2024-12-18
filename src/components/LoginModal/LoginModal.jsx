@@ -25,7 +25,13 @@ const LoginModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogIn(data);
+    if (!data.email || !data.password) {
+      return;
+    }
+    onLogIn({
+      email: data.email,
+      password: data.password,
+    });
   };
 
   return (
