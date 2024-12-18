@@ -152,7 +152,6 @@ function App() {
     editUserProfile(profileData, token)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
-        return getItems();
       })
       .then((items) => {
         setClothingItems(items);

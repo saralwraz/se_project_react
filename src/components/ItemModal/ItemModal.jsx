@@ -4,7 +4,6 @@ import "./ItemModal.css";
 
 function ItemModal({ activeModal, closeActiveModal, card, handleDelete }) {
   const currentUser = useContext(CurrentUserContext);
-  const { name, imageUrl, weather } = card || {};
   const isOwner = currentUser && currentUser?._id === card?.owner;
   return (
     <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>

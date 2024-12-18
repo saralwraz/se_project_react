@@ -9,7 +9,7 @@ function checkResponse(res) {
 
 // Register a new user
 export const registerUser = ({ email, password, name, avatar }) => {
-  return request(`${baseUrl}/signup`, {
+  return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

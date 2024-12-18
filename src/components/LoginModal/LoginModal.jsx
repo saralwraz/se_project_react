@@ -1,5 +1,5 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./LoginModal.css";
 
 const LoginModal = ({

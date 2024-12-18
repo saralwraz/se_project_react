@@ -1,7 +1,7 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useContext } from "react";
 import "./main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
-import { clothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
 import CurrentTempUnitContext from "../../contexts/CurrentTempUnitContext";
 
