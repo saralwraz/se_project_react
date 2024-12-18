@@ -152,11 +152,14 @@ function App() {
     editUserProfile(profileData, token)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
+        return getItems();
+      })
+      .then((items) => {
+        setClothingItems(items);
         closeModal();
       })
       .catch((err) => console.error("Edit profile error:", err));
   };
-
   const handleSignout = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);

@@ -1,6 +1,8 @@
 .modal__content_image {
   padding: 0;
   max-width: 498px;
+  background-color: white;
+  z-index: 10;
 }
 
 .modal__footer {

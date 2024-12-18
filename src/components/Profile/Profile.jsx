@@ -10,6 +10,7 @@ function Profile({
   openModal,
   handleCardLike,
 }) {
+  console.log("Profile clothingItems:", clothingItems);
   const handleEditProfile = () => {
     openModal("edit");
   };
