@@ -121,7 +121,7 @@ function App() {
 
   // Authentication Handlers
   const handleLogin = ({ email, password }) => {
-    logIn(email, password)
+    logIn({ email, password })
       .then((data) => {
         if (!data.token) throw new Error("Token not received");
         localStorage.setItem("jwt", data.token);
