@@ -12,3 +12,7 @@
   cursor: pointer;
   background-color: transparent;
 }
+
+.clothes__section_button:hover {
+  opacity: 0.5;
+}

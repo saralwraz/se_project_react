@@ -29,6 +29,11 @@
   padding-right: 20px;
   background: none;
   font-weight: 700;
+  cursor: pointer;
+}
+
+.header__add_clothes:hover {
+  opacity: 0.5;
 }
 
 .header__user_info {
