@@ -10,15 +10,15 @@ const EditProfileModal = ({
 }) => {
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState("");
-  const [avatarUrl, setAvatarUrl] = useState("");
+  const [avatar, setavatar] = useState("");
   const [isButtonActive, setIsButtonActive] = useState(false);
-  const [errors, setErrors] = useState({ name: "", avatarUrl: "" });
+  const [errors, setErrors] = useState({ name: "", avatar: "" });
 
   const validateForm = () => {
     let isValid = true;
     let errors = {
       name: "",
-      avatarUrl: "",
+      avatar: "",
     };
 
     if (!name) {
@@ -26,11 +26,11 @@ const EditProfileModal = ({
       isValid = false;
     }
 
-    if (!avatarUrl) {
-      errors.avatarUrl = "Image URL is required.";
+    if (!avatar) {
+      errors.avatar = "Image URL is required.";
       isValid = false;
-    } else if (!/^https?:\/\/.+/.test(avatarUrl)) {
-      errors.avatarUrl = "Invalid URL format.";
+    } else if (!/^https?:\/\/.+/.test(avatar)) {
+      errors.avatar = "Invalid URL format.";
       isValid = false;
     }
 
@@ -41,25 +41,25 @@ const EditProfileModal = ({
   function handleSubmit(e) {
     e.preventDefault();
     if (validateForm()) {
-      onEditProfileSubmit({ name, avatarUrl });
+      onEditProfileSubmit({ name, avatar });
     }
   }
 
   const handleNameChange = (e) => setName(e.target.value || "");
-  const handleAvatarChange = (e) => setAvatarUrl(e.target.value || "");
+  const handleAvatarChange = (e) => setavatar(e.target.value || "");
 
   useEffect(() => {
-    if (name.trim() && avatarUrl.trim()) {
+    if (name.trim() && avatar.trim()) {
       setIsButtonActive(true);
     } else {
       setIsButtonActive(false);
     }
-  }, [name, avatarUrl]);
+  }, [name, avatar]);
 
   useEffect(() => {
     if (currentUser) {
       setName(currentUser.name || "");
-      setAvatarUrl(currentUser.avatar || "");
+      setavatar(currentUser.avatar || "");
     }
   }, [currentUser]);
 
@@ -94,14 +94,12 @@ const EditProfileModal = ({
           type="url"
           className="modal__input"
           id="avatar"
-          placeholder={avatarUrl}
-          value={avatarUrl}
+          placeholder={avatar}
+          value={avatar}
           onChange={handleAvatarChange}
           required
         />
-        {errors.avatarUrl && (
-          <span className="modal__error">{errors.avatarUrl}</span>
-        )}
+        {errors.avatar && <span className="modal__error">{errors.avatar}</span>}
       </label>
       <button
         type="submit"
