@@ -46,7 +46,7 @@ function App() {
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({ name: "", avatar: "" });
+  const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
 
   // Initial Data Loading
@@ -58,7 +58,10 @@ function App() {
           setCurrentUser(userData);
           setIsLoggedIn(true);
         })
-        .catch(() => setIsLoggedIn(false));
+        .catch(() => {
+          setIsLoggedIn(false);
+          setCurrentUser(null);
+        });
     }
   }, []);
 
@@ -96,7 +99,7 @@ function App() {
 
   const handleDeleteCard = () => {
     const token = localStorage.getItem("jwt");
-    deleteItem(selectedCard, token)
+    deleteItem(selectedCard._id, token)
       .then(() => {
         setClothingItems((cards) =>
           cards.filter((card) => card._id !== selectedCard._id)
@@ -157,6 +160,7 @@ function App() {
   const handleSignout = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
+    setCurrentUser(null);
     navigate("/");
   };
 
@@ -185,7 +189,7 @@ function App() {
                     openModal("preview");
                   }}
                   clothingItems={clothingItems}
-                  oncardLike={handleCardLike}
+                  onCardLike={handleCardLike}
                   isLoggedIn={isLoggedIn}
                 />
               }
@@ -202,7 +206,7 @@ function App() {
                     }}
                     clothingItems={clothingItems}
                     handleAddClick={() => openModal("add-garment")}
-                    onCardLike={handleCardLike}
+                    handleCardLike={handleCardLike}
                     handleSignout={handleSignout}
                     openModal={openModal}
                   />

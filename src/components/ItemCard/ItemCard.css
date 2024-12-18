@@ -46,6 +46,11 @@
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .item__heart_liked {

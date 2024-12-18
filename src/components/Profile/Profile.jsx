@@ -8,6 +8,7 @@ function Profile({
   clothingItems,
   handleSignout,
   openModal,
+  handleCardLike,
 }) {
   const handleEditProfile = () => {
     openModal("edit");
@@ -26,6 +27,7 @@ function Profile({
           onCardClick={onCardClick}
           handleAddClick={handleAddClick}
           clothingItems={clothingItems}
+          handleCardLike={handleCardLike}
         />
       </section>
     </div>

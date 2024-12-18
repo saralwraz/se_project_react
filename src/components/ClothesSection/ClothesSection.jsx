@@ -30,7 +30,7 @@ function ClothesSection({
               key={item._id}
               item={item}
               onCardClick={onCardClick}
-              onCardLike={handleCardLike}
+              handleCardLike={handleCardLike}
             />
           ))
         ) : (
