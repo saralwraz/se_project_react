@@ -36,3 +36,26 @@
   width: 100%;
   border-radius: 19px;
 }
+
+.item__heart {
+  width: 18px;
+  height: 15px;
+  background-color: transparent;
+  border: 0;
+  background-image: url(../../assets/item__heart.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.item__heart_liked {
+  background-image: url(../../assets/item__heart_liked.png);
+}
+
+.item__heart_visible {
+  visibility: visible;
+}
+
+.item__heart_hidden {
+  visibility: hidden;
+}
