@@ -8,7 +8,7 @@ function checkResponse(res) {
 }
 
 // Register a new user
-export const registerUser = (email, password, name, avatar) => {
+export const registerUser = ({ email, password, name, avatar }) => {
   return request(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
