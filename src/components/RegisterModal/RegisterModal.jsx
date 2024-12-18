@@ -90,7 +90,7 @@ const RegisterModal = ({
         <input
           type="url"
           className="modal__input modal__input_signup"
-          id="avatarUrl"
+          id="avatar"
           name="avatar"
           placeholder="Avatar URL"
           value={avatar}

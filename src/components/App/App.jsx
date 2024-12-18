@@ -189,7 +189,7 @@ function App() {
                     openModal("preview");
                   }}
                   clothingItems={clothingItems}
-                  onCardLike={handleCardLike}
+                  handleCardLike={handleCardLike}
                   isLoggedIn={isLoggedIn}
                 />
               }

@@ -5,8 +5,8 @@ import { clothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
 import CurrentTempUnitContext from "../../contexts/CurrentTempUnitContext";
 
-function Main({ weatherData, handleCardClick, clothingItems, onCardLike }) {
-  // Add onCardLike prop
+function Main({ weatherData, handleCardClick, clothingItems, handleCardLike }) {
+  // Add handleCardLike prop
   const { currentTempUnit } = useContext(CurrentTempUnitContext);
 
   const displayTemp =
@@ -27,7 +27,7 @@ function Main({ weatherData, handleCardClick, clothingItems, onCardLike }) {
                 key={item._id}
                 item={item}
                 onCardClick={handleCardClick}
-                onCardLike={onCardLike}
+                handleCardLike={handleCardLike}
               />
             ))}
         </ul>
