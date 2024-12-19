@@ -45,14 +45,15 @@ const LoginModal = ({
         isButtonActive ? "modal__submit_complete" : ""
       }`}
       error={error}
+      name="login"
     >
       <button
         className="modal__close"
         type="button"
         onClick={closeActiveModal}
       />
-      <label htmlFor="email" className="modal__label">
-        Email
+      <label htmlFor="login-email" className="modal__label">
+        Email*
         <input
           type="email"
           className="modal__input"
@@ -66,8 +67,8 @@ const LoginModal = ({
           required
         />
       </label>
-      <label htmlFor="password" className="modal__label">
-        Password
+      <label htmlFor="login-password" className="modal__label">
+        Password*
         <input
           type="password"
           className="modal__input"

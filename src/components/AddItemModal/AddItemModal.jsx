@@ -17,7 +17,6 @@ const AddItemModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ name, imageUrl, weather });
     handleAddItemSubmit({ name, imageUrl, weather });
   };
 
@@ -28,12 +27,13 @@ const AddItemModal = ({
       isOpen={isOpen}
       closeActiveModal={closeActiveModal}
       onSubmit={handleSubmit}
+      name="add-item"
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="add-item-name" className="modal__label">
         Name
         <input
           type="text"
-          id="name"
+          id="add-item-name"
           className="modal__input"
           placeholder="Name"
           required
@@ -41,11 +41,11 @@ const AddItemModal = ({
           onChange={handleNameChange}
         />
       </label>
-      <label htmlFor="imageLink" className="modal__label">
+      <label htmlFor="add-item-image" className="modal__label">
         Image
         <input
           type="url"
-          id="imageLink"
+          id="add-item-image"
           className="modal__input"
           placeholder="Image URL"
           value={imageUrl}

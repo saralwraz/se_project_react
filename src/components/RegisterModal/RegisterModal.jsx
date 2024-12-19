@@ -40,18 +40,18 @@ const RegisterModal = ({
 
   return (
     <ModalWithForm
-      title="Sign Up"
-      buttonText="Sign Up"
+      title="Sign up"
       isOpen={isOpen}
       closeActiveModal={closeActiveModal}
       onSubmit={handleSubmit}
+      name="register"
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="register-email" className="modal__label">
         Email*
         <input
           type="email"
           className="modal__input"
-          id="email"
+          id="register-email"
           name="email"
           placeholder="Email"
           value={email}
@@ -59,12 +59,12 @@ const RegisterModal = ({
           required
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="register-password" className="modal__label">
         Password*
         <input
           type="password"
           className="modal__input"
-          id="registerPassword"
+          id="register-password"
           name="password"
           placeholder="Password"
           value={password}
@@ -72,12 +72,12 @@ const RegisterModal = ({
           required
         />
       </label>
-      <label className="modal__label">
+      <label htmlFor="register-name" className="modal__label">
         Name*
         <input
           type="text"
           className="modal__input"
-          id="registerName"
+          id="register-name"
           name="name"
           placeholder="Name"
           value={name}
@@ -85,12 +85,12 @@ const RegisterModal = ({
           required
         />
       </label>
-      <label className="modal__label">
+      <label htmlFor="register-avatar" className="modal__label">
         Avatar URL*
         <input
           type="url"
           className="modal__input modal__input_signup"
-          id="avatar"
+          id="register-avatar"
           name="avatar"
           placeholder="Avatar URL"
           value={avatar}

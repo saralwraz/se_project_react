@@ -67,13 +67,30 @@ function App() {
 
   useEffect(() => {
     getWeather(coordinates, APIKey)
-      .then((data) => setWeatherData(filterWeatherData(data)))
-      .catch(console.error);
+      .then((data) => {
+        const filteredData = filterWeatherData(data);
+        console.log("Weather data loaded:", filteredData);
+        setWeatherData(filteredData);
+      })
+      .catch((error) => {
+        console.error("Error loading weather:", error);
+      });
   }, []);
 
   useEffect(() => {
-    getItems().then(setClothingItems).catch(console.error);
+    getItems()
+      .then((items) => {
+        console.log("Initial items loaded:", items);
+        setClothingItems(items);
+      })
+      .catch((error) => {
+        console.error("Error loading items:", error);
+      });
   }, []);
+
+  useEffect(() => {
+    console.log("clothingItems updated:", clothingItems);
+  }, [clothingItems]);
 
   // Modal Handlers
   const openModal = (modal) => setActiveModal(modal);
@@ -89,24 +106,27 @@ function App() {
   // Item Handlers
   const handleAddItemSubmit = (newItem) => {
     const token = localStorage.getItem("jwt");
+
     addItem(newItem, token)
       .then((addedItem) => {
-        setClothingItems([addedItem, ...clothingItems]);
+        setClothingItems((prevItems) => [addedItem, ...prevItems]);
         closeModal();
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Error adding item:", err);
+      });
   };
 
   const handleDeleteCard = () => {
     const token = localStorage.getItem("jwt");
     deleteItem(selectedCard._id, token)
       .then(() => {
-        setClothingItems((cards) =>
-          cards.filter((card) => card._id !== selectedCard._id)
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== selectedCard._id)
         );
         closeModal();
       })
-      .catch(console.error);
+      .catch((err) => console.error(err));
   };
 
   const handleCardLike = ({ id, isLiked }) => {
@@ -152,13 +172,11 @@ function App() {
     editUserProfile(profileData, token)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
-      })
-      .then((items) => {
-        setClothingItems(items);
         closeModal();
       })
       .catch((err) => console.error("Edit profile error:", err));
   };
+
   const handleSignout = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
@@ -185,6 +203,7 @@ function App() {
               path="/"
               element={
                 <Main
+                  key={clothingItems.length}
                   weatherData={weatherData}
                   handleCardClick={(card) => {
                     setSelectedCard(card);
@@ -224,6 +243,7 @@ function App() {
             isOpen={activeModal === "add-garment"}
             closeActiveModal={closeModal}
             handleAddItemSubmit={handleAddItemSubmit}
+            currentWeatherType={weatherData.type}
           />
           <ItemModal
             card={selectedCard}
@@ -245,7 +265,7 @@ function App() {
           <LoginModal
             isOpen={activeModal === "login"}
             closeActiveModal={closeModal}
-            handleLoginModal={() => openModal("signup")}
+            handleRegisterModal={() => openModal("signup")}
             onLogIn={handleLogin}
           />
           <EditProfileModal

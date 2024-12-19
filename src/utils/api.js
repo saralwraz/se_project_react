@@ -82,8 +82,8 @@ export const updateProfile = (profileData, token) => {
 };
 
 // Delete an item (protected, requires token)
-export const deleteItem = (item, token) => {
-  return fetch(`${baseUrl}/items/${item._id}`, {
+export const deleteItem = (itemId, token) => {
+  return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

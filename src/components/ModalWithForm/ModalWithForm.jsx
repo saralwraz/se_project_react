@@ -6,6 +6,7 @@ function ModalWithForm({
   isOpen,
   onSubmit,
   closeActiveModal,
+  name = "modal",
 }) {
   const handleModalClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -16,6 +17,28 @@ function ModalWithForm({
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(e);
+  };
+
+  const addPrefixToChildIds = (children) => {
+    return React.Children.map(children, (child) => {
+      if (!React.isValidElement(child)) return child;
+
+      const childProps = { ...child.props };
+
+      if (childProps.id) {
+        childProps.id = `${name}-${childProps.id}`;
+      }
+
+      if (childProps.htmlFor) {
+        childProps.htmlFor = `${name}-${childProps.htmlFor}`;
+      }
+
+      if (child.props.children) {
+        childProps.children = addPrefixToChildIds(child.props.children);
+      }
+
+      return React.cloneElement(child, childProps);
+    });
   };
 
   return (
@@ -30,7 +53,7 @@ function ModalWithForm({
           type="button"
         />
         <h2 className="modal__heading">{title}</h2>
-        {children}
+        {addPrefixToChildIds(children)}
       </form>
     </div>
   );
