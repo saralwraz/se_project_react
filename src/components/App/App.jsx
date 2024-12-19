@@ -109,7 +109,7 @@ function App() {
 
     addItem(newItem, token)
       .then((addedItem) => {
-        setClothingItems((prevItems) => [addedItem, ...prevItems]);
+        setClothingItems((prevItems) => [addedItem.data, ...prevItems]);
         closeModal();
       })
       .catch((err) => {
@@ -220,6 +220,7 @@ function App() {
               element={
                 <ProtectedRoute isLoggedIn={isLoggedIn}>
                   <Profile
+                    key={clothingItems.length}
                     weatherData={weatherData}
                     onCardClick={(card) => {
                       setSelectedCard(card);

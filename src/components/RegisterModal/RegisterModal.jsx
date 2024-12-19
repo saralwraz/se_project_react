@@ -57,6 +57,7 @@ const RegisterModal = ({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          autoComplete="email"
         />
       </label>
       <label htmlFor="register-password" className="modal__label">
@@ -70,6 +71,7 @@ const RegisterModal = ({
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          autoComplete="new-password"
         />
       </label>
       <label htmlFor="register-name" className="modal__label">
@@ -83,6 +85,7 @@ const RegisterModal = ({
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
+          autoComplete="name"
         />
       </label>
       <label htmlFor="register-avatar" className="modal__label">
@@ -96,6 +99,7 @@ const RegisterModal = ({
           value={avatar}
           onChange={(e) => setAvatar(e.target.value)}
           required
+          autoComplete="url"
         />
       </label>
       <div className="modal__buttons-container">

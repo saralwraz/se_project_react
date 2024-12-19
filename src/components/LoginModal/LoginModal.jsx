@@ -65,6 +65,7 @@ const LoginModal = ({
             setData((prevData) => ({ ...prevData, email: e.target.value }))
           }
           required
+          autoComplete="email"
         />
       </label>
       <label htmlFor="login-password" className="modal__label">
@@ -80,6 +81,7 @@ const LoginModal = ({
             setData((prevData) => ({ ...prevData, password: e.target.value }))
           }
           required
+          autoComplete="current-password"
         />
       </label>
       {error && <div className="modal__error">{error}</div>}
