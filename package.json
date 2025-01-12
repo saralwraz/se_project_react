@@ -1,5 +1,5 @@
 {
-  "homepage": "https://saralwraz.twilightparadox.com",
+  "homepage": "https://saralwraz.crabdance.com",
   "name": "se_project_react-main",
   "private": true,
   "version": "0.0.0",
@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./dist/* saralwraz@saralwraz.twilightparadox.com:/home/saralwraz/frontend"
+    "deploy": "npm run build && scp -r ./dist/* saralwraz@saralwraz.crabdance.com:/home/saralwraz/frontend"
   },
   "dependencies": {
     "mongoose": "^8.7.3",

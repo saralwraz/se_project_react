@@ -1,6 +1,6 @@
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://api.saralwraz.twilightparadox.com/"
+    ? "https://api.saralwraz.crabdance.com/"
     : "http://localhost:3001";
 
 function checkResponse(res) {
